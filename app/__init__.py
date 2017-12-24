@@ -1,16 +1,17 @@
-from birdnest import app
-
+import logging
 
 import boto
 from boto.s3.connection import S3Connection
+from flask import Flask
 from flask import make_response
 from flask import redirect
 from flask import render_template
 from flask import Response
 from flask import send_file
 
-
 INDEX_PAGE = 'index.html'
+
+app = Flask(__name__)
 
 
 @app.route("/")
@@ -29,6 +30,11 @@ def aboutme(path=''):
 
     response = bucket.read_key(path)
     return response
+
+
+@app.route("/health")
+def health():
+    return '=)'
 
 
 class S3Connector(object):
