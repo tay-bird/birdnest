@@ -33,6 +33,7 @@ def aboutme(path=''):
 
 
 @app.route("/health")
+@app.route("/health/")
 def health():
     return '=)'
 
